@@ -147,6 +147,7 @@ width:250px;
 height:250px;
 position:relative;
 }
+
 .data-turntable .Mod .Mod1{
 	width:250px;
 	height:250px;
@@ -210,6 +211,7 @@ position:relative;
     -webkit-animation:rotate 0.4s infinite linear;
     animation:rotate 0.4s infinite linear;
 }
+
 .data-turntable .Mod .Mod4{
 	width:250px;
 	height:250px;

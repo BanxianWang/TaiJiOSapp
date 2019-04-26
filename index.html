@@ -61,8 +61,38 @@
 				},
 				"json"
 			);/////////////////////////////////
-			alert($("#searchMc").val())//获取到下拉列表的实际值value
-			$("#wendu").text("30.121")//设置温度值
+			if($("#searchMc").val()==1){//获取到下拉列表的实际值value
+				$("#mcID").text("S/N0001");
+				$("#wendu").text("30.121°C")//设置温度值
+				$("#shidu").text("23%💧")//设置湿度值
+				$("#sx2").css("color","chartreuse");
+				$("#sx2").text("运行中");
+				$("#mod1").addClass("Mod1");
+				$("#mod2").addClass("Mod2");
+				$("#mod3").addClass("Mod3");
+				$("#mod4").addClass("Mod4");
+				
+			}else if($("#searchMc").val()==2){
+				$("#mcID").text("S/N0002");
+				$("#wendu").text("19.11°C")//设置温度值
+				$("#shidu").text("23%💧")//设置湿度值
+				$("#sx2").css("color","#FFCC00");
+				$("#sx2").text("故障中");
+			
+				$("#mod2").removeClass("Mod2");
+				$("#mod3").removeClass("Mod3");
+			}else if($("#searchMc").val()==3){
+				$("#mcID").text("S/N0003");
+				$("#wendu").text("？ °C")//设置温度值
+				$("#shidu").text("？💧")//设置湿度值
+				$("#sx2").css("color","red");
+				$("#sx2").text("未运行");
+				$("#mod1").removeClass("Mod1");
+				$("#mod2").removeClass("Mod2");
+				$("#mod3").removeClass("Mod3");
+				
+			}	
+			
 		})
 	});
 </script>
@@ -87,11 +117,11 @@
 <!---数据转盘 开始--->
 	<div class="data-turntable wow zoomIn">
     <div class="Mod xzleft">
-    <div class="Mod1"></div>
-    <div class="Mod2 xzleft"></div>
-    <div class="Mod3"></div>
-    <div class="Mod4 xzleft"></div>
-    <div class="text">S/N0001</div>
+    <div id="mod1"  class="Mod1"></div>
+    <div id="mod2"  class="Mod2 xzleft"></div>
+    <div id="mod3"  class="Mod3"></div>
+    <div id="mod4" class="Mod4 xzleft"></div>
+    <div class="text" id="mcID">S/N0001</div>
     <div class="num" id="sx2">运行中</div>
     </div>
     </div>
@@ -101,9 +131,9 @@
 <!---我的机器下拉列表--->
 <div class="mygoods-so">
 	<select class="input" id="searchMc">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
+		<option value="1"> S/N0001</option>
+		<option value="2"> S/N0002</option>
+		<option value="3"> S/N0003</option>
 	</select>
     <input type="submit" name="button" class="button" value="选择机器" />
 </div>
@@ -119,7 +149,7 @@
                 <span>当前温度</span>
             </div>
             <div class="comr">
-                <span class="wow slideInLeft"><span  id="wendu">21.123</span>°C</span>
+                <span class="wow slideInLeft" id="wendu">21.123°C</span>
                 <i class="icon-eed3"></i>
             </div>
         </a>
@@ -130,7 +160,7 @@
                 <span>当前湿度</span>
             </div>
             <div class="comr">
-                <span class="wow slideInLeft">34%💧</span>
+                <span class="wow slideInLeft" id="shidu">34%💧</span>
                 <i class="icon-eed3"></i>
             </div>
         </a>
