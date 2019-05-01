@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>所有用户</title>
+<meta name="keywords" content="有爱的" />
+<meta name="description" content="有爱的" />
+<link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon"/>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/data.css"/>
+<link href="css/iconfont/Rjdaoico.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<!--下拉动画-->
+<link rel="stylesheet" href="css/animate.min.css"/>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script>
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+		new WOW().init();
+	};
+	$(function(){
+		
+	});
+</script>
+<!--下拉动画-->
+<script type="text/javascript">
+	function timer(opj){
+		$(opj).find('ul').animate({
+			marginTop : "-3.0rem"  
+			},500,function(){  
+			$(this).css({marginTop : "0.0rem"}).find("a:first").appendTo(this);  
+		})  
+	}
+	$(function(){ 
+		var num = $('.notice_active').find('a').length;
+		if(num > 1){
+		   var time=setInterval('timer(".notice_active")',3500);
+			$('.gg_more a').mousemove(function(){
+				clearInterval(time);
+			}).mouseout(function(){
+				time = setInterval('timer(".notice_active")',3500);
+			}); 
+		}
+		
+		$(".news_ck").click(function(){
+			location.href = $(".notice_active .notice_active_ch").children(":input").val();
+		})
+	});
+</script>
+<script src="js/wow.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/yuyinJS/recorder.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/yuyinJS/worker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+	$(function(){
+		
+		
+		
+		var recorder = new Recorder({
+		    sampleRate: 44100, //采样频率，默认为44100Hz(标准MP3采样率)
+		    bitRate: 128, //比特率，默认为128kbps(标准MP3质量)
+		    success: function(){ //成功回调函数
+		    	console.log("成功回调函数")
+		    },
+		    error: function(msg){ //失败回调函数
+		    	console.log("失败回调函数")
+		    },
+		    fix: function(msg){ //不支持H5录音回调函数
+		    	console.log("不支持H5录音回调函数")
+		    }
+		});
+		
+		$("#begin").click(function(){
+			//开始录音
+			recorder.start();
+		})
+		$("#end").click(function(){
+			//停止录音
+			recorder.stop();
+			
+		})
+		$("#getsy").click(function(){
+			//获取MP3编码的Blob格式音频文件
+			
+			recorder.getBlob(function(blob){ //获取成功回调函数，blob即为音频文件
+				$("#sy").attr("src",URL.createObjectURL(blob));
+				
+			},function(msg){ //获取失败回调函数，msg为错误信息
+				alert("err:"+msg)
+			});
+		})
+		
+		
+})
+	
+	
+</script>
+</head>
+
+<body>
+
+
+<div class="datamain" style="background-color:#015ab4;">
+<!---头部 开始 --->
+	<div class="data-nav">
+    	<div class="bw">
+        	<a href="javascript:history.go(-1)" class="l"><i class="icon-eee3"></i></a>
+            	<div class="name">所有用户</div>
+        	<a href="user_doubt.html" class="r"><i class="icon-ecfa"></i></a>
+        </div>
+    </div>
+    <div class="h-height"></div>
+<!---头部 结束 --->
+
+
+
+<audio  id="sy" controls="controls" src=""></audio>
+<div class="data-user-list">
+	<a class="item-name">
+    	<span>187****6615</span>
+    	<span class="ml">浙江杭州</span>
+    	<em>时间：2018-08-26 80：27</em>
+    </a>
+    
+</div>
+
+<div class="pageType">
+<ul class="pagination">
+<li><a  id="begin" >开始录音</a></li>
+<li><a  id="end">结束录音</a></li>
+<li><a  id="getsy">获取声音</a></li>
+</ul>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
