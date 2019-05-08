@@ -1,20 +1,32 @@
 {
-  "index.html": {
-    "refer": [
-      "aduioTest.html",
-      "data_goodslist.html"
-    ],
-    "resources": []
-  },
-  "aduioTest.html": {
-    "refer": [
-      "index.html"
-    ],
-    "resources": []
-  },
-  "data_goodslist.html": {
-    "refer": [
-      "index.html"
-    ]
-  }
+	"index.html": {
+		"refer": [
+			"aduioTest.html",
+			"data_goodslist.html",
+			"data_total.html",
+			"data_userlist.html"
+		],
+		"resources": []
+	},
+	"aduioTest.html": {
+		"refer": [
+			"index.html"
+		],
+		"resources": []
+	},
+	"data_goodslist.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"data_total.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"data_userlist.html": {
+		"refer": [
+			"index.html"
+		]
+	}
 }

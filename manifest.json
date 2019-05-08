@@ -1,4 +1,4 @@
-﻿{
+{
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "",/*应用的标识，创建应用时自动生成，勿手动修改*/
     "name": "TaiJiOSapp",/*应用名称，程序桌面图标名称*/
@@ -142,7 +142,9 @@
 				"resources": [],
 				"refer": [
 					"aduioTest.html",
-					"data_goodslist.html"
+					"data_goodslist.html",
+					"data_total.html",
+					"data_userlist.html"
 				],
 				"priority": 0
 			},
@@ -154,6 +156,20 @@
 				"priority": 0
 			},
 			"data_goodslist.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"data_total.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"data_userlist.html": {
 				"resources": [],
 				"refer": [
 					"index.html"
@@ -201,10 +217,8 @@
 				"images/goods1.jpg",
 				"css/img/data-xz2.png",
 				"data_juan.html",
-				"data_userlist.html",
 				"css/img/shouwan.png",
 				"images/user-portrait.jpg",
-				"data_total.html",
 				"images/goods8.jpg",
 				"css/img/gif-7-1.png",
 				"css/iconfont/index.html"
