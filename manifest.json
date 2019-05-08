@@ -1,6 +1,10 @@
 ﻿{
     "@platforms": ["android", "iPhone", "iPad"],
+
     "id": "H58DC0B9D",/*应用的标识，创建应用时自动生成，勿手动修改*/
+
+    "id": "",/*应用的标识，创建应用时自动生成，勿手动修改*/
+
     "name": "TaiJiOSapp",/*应用名称，程序桌面图标名称*/
     "version": {
         "name": "1.0",/*应用版本名称*/
@@ -135,5 +139,83 @@
                 }
             }
         }
+
     }
+
+    },
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [],
+				"refer": [
+					"aduioTest.html",
+					"data_goodslist.html"
+				],
+				"priority": 0
+			},
+			"aduioTest.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"data_goodslist.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"css/iconfont/Rjdaoico.ttf",
+				"js/slider.js",
+				"css/img/user_bj.jpg",
+				"images/goods6.jpg",
+				"js/wow.min.js",
+				"login.html",
+				"images/user-portrait.png",
+				"js/yuyinJS/recorder.js",
+				"js/swiper.min.js",
+				"data_zhichu2.html",
+				"images/goods7.jpg",
+				"images/min-logo.png",
+				"css/img/data_bj.jpg",
+				"css/iconfont/Rjdaoico.woff",
+				"css/img/data-xz1.png",
+				"images/pro-1.jpg",
+				"images/logo.png",
+				"data.html",
+				"images/goods2.jpg",
+				"images/goods4.jpg",
+				"css/img/gif-7-2.png",
+				"data_zhichu.html",
+				"css/data.css",
+				"images/goods5.jpg",
+				"css/img/gif-7-3.png",
+				"images/logo1.png",
+				"css/iconfont/Rjdaoico.svg",
+				"js/yuyinJS/worker.js",
+				"images/goods3.jpg",
+				"css/style.css",
+				"css/iconfont/Rjdaoico.eot",
+				"js/yuyinJS/lame.min.js",
+				"css/animate.min.css",
+				"css/iconfont/Rjdaoico.css",
+				"css/img/data-xz3.png",
+				"images/goods1.jpg",
+				"css/img/data-xz2.png",
+				"data_juan.html",
+				"data_userlist.html",
+				"css/img/shouwan.png",
+				"images/user-portrait.jpg",
+				"data_total.html",
+				"images/goods8.jpg",
+				"css/img/gif-7-1.png",
+				"css/iconfont/index.html"
+			]
+		}
+	}
 }

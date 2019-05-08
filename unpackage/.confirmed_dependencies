@@ -1,0 +1,20 @@
+{
+  "index.html": {
+    "refer": [
+      "aduioTest.html",
+      "data_goodslist.html"
+    ],
+    "resources": []
+  },
+  "aduioTest.html": {
+    "refer": [
+      "index.html"
+    ],
+    "resources": []
+  },
+  "data_goodslist.html": {
+    "refer": [
+      "index.html"
+    ]
+  }
+}
