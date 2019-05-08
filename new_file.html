@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.12.4.js" ></script>
+		<script>
+			$(function(){
+				$.ajax({
+						url:"http://192.168.8.118:8080/jsp/getLastTemperature?machineID=1",
+						type:"get",
+						dataType:"jsonp",
+						jsonpCallback: "successCallback",  //指定回调函数名称
+						success:function(data){
+							//console.log(data)
+							//$("#sx2").text(data)
+							 console.info("调用success");
+							 console.log(data.temperature.temperature)
+						}
+				});
+				
+			})
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
