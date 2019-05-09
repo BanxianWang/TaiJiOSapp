@@ -13,224 +13,25 @@
 		<link href="css/iconfont/Rjdaoico.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/slider.js"></script>
+		<script type="text/javascript" src="js/yuyinJS/common.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+		<script src="js/temperature/bindTemperature.js"></script>
+		<!--语音输入控件-->
+		<script src="js/yuyinJS/speechInput%20.js"></script>
 		<!--下拉动画-->
 		<link rel="stylesheet" href="css/animate.min.css" />
-		<script type="text/javascript" src="js/wow.min.js"></script>
-		<script>
-			if(!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
-				new WOW().init();
-			};
-			$(function() {
-				getTemperature();
-				getSomeInfo();
-				getHouseTemperature();
-				 getDaysTemperature();
-				setInterval(function() {
-					getTemperature();
-				}, 10000)
-			});
-
-			function showData(data) {
-				console.log(data)
+		<style type="text/css">
+			.out {
+				margin: 9px;
+				height: 30%;
+				width: 90%;
 			}
-			
-			//ajax获取实时温度
-			function getTemperature() {
-				$.ajax({
-					url: "http://192.168.8.119:8080/jsp/getLastTemperature",
-					type: "post",
-					data: {
-						machineID: 1
-					},
-					dataType: "jsonp",
-					jsonpCallback: "successCallback", //指定回调函数名称
-					success: function(data) {
-						$("#sx2").text(data.temperature.temperature + "°c")
-					}
-				});
-			}
+		</style>
 		
-			//ajax获取24小温度
-			function getHouseTemperature(){
-				$.ajax({
-					url: "http://192.168.8.119:8080/jsp/getHoursTemperature",
-					type: "post",
-					data: {
-						machineID: 1
-					},
-					dataType: "jsonp",
-					jsonpCallback: "successCallback1", //指定回调函数名称
-					success: function(data) {
-						var dataModels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12','13','14','15','16','17','18','19','20','21','22','23','24'];
-						bindContainer($("#container"),data.hoursavg,dataModels);
-					}
-				});
-			}
-			
-			function getDaysTemperature(){
-				$.ajax({
-					url: "http://192.168.8.119:8080/jsp/getDaysTemperature",
-					type: "post",
-					data: {
-						machineID: 1
-					},
-					dataType: "jsonp",
-					jsonpCallback: "successCallback2", //指定回调函数名称
-					success: function(data) {
-						var dataModels = ['1', '2', '3', '4', '5', '6', '7'];
-						bindContainer($("#container1"),data.daysavg,dataModels);
-					}
-				});
-			}
-			
-			function getSomeInfo(){
-				$.ajax({
-					url: "http://192.168.8.119:8080/jsp/getSomeInfo",
-					type: "post",
-					data: {
-						machineID: 1
-					},
-					dataType: "jsonp",
-					jsonpCallback: "successCallback3", //指定回调函数名称
-					success: function(data) {
-						$("#maxTemperature").text(data.max);
-						$("#minTemperature").text(data.min);
-						$("#avgTemperature").text(data.avg);
-					}
-				});
-			}
-			
-			
 		
-			//绑定温度列表控件，dm为jquery列表元素，temperatures为温度数组,datas为列表区间个数
-			function bindContainer(dm,temperatures,dataModels) {
-						dm.highcharts({
-							chart: {
-								type: 'area',
-								spacingBottom: 30,
-								backgroundColor: 'rgba(0,0,0,0)'
-							},
-							legend: {
-								//去掉底部的series名称
-								enabled: false,
-							},
-							title: {
-								text: ''
-							},
-							subtitle: {
-								text: false,
-								floating: false,
-								align: 'right',
-								//verticalAlign: 'bottom',
-								//y: 15
-							},
-							/*
-							legend: {
-								layout: 'vertical',
-								align: 'left',
-								verticalAlign: 'top',
-								x: 150,
-								y: 100,
-								floating: true,
-								borderWidth: 1,
-								backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-							},
-							*/
+	
 
-							xAxis: {
-								lineColor: '#5EB8EE',
-								lineWidth: 1,
-								tickColor: '#5EB8EE',
-								tickLength: 5,
-								tickWidth: 1,
-								gridLineColor: '#5EB8EE',
-								plotBorderColor: '#5EB8EE',
-								categories: dataModels,
-								labels: {
-									//enabled:false, //去掉分类名称
-									formatter: function() {
-										return this.value;
-									},
-									style: {
-										color: '#b8def5',
-										fontSize: '12px',
-										fontFamily: '微软雅黑'
-									}
-								}
-							},
-
-							yAxis: {
-								lineColor: '#5EB8EE',
-								lineWidth: 1,
-								tickColor: '#5EB8EE',
-								tickLength: 5,
-								tickWidth: 1,
-								gridLineColor: '#5EB8EE',
-								title: {
-									text: false,
-
-								},
-
-								labels: {
-									formatter: function() {
-										return this.value;
-									},
-									style: {
-										color: '#b8def5',
-										fontSize: '10px',
-										fontFamily: '微软雅黑'
-									}
-								}
-							},
-							//数据点提示框
-
-							/*tooltip: {
-								headerFormat: '',
-								pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-							},*/
-							tooltip: {
-								formatter: function() {
-									return '<b>' +'平均温度：' + '</b><br/>' +
-										 + this.y+"°C";
-								}
-							},
-
-							plotOptions: {
-								areaspline: {
-									color: '#rgba(0, 0, 0, 0.8)',
-									lineColor: '#000',
-									fillOpacity: 0.2
-								}
-							},
-
-							credits: {
-								enabled: false
-							},
-							series: [{
-								name: '月入额',
-								data: temperatures,
-								marker: { //线上数据点
-									radius: 5,
-									lineWidth: 2,
-									lineColor: '#a6e1f8',
-									fillColor: '#0090d1',
-									states: {
-										hover: {
-											lineColor: '#fe7a6b',
-											fillColor: '#fe7a6b',
-											//enabled:false
-										}
-									}
-								}
-
-							}]
-
-						});
-					}
-		</script>
-		<!--下拉动画-->
-
-		<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
 		<!--<script src="js/highcharts.js"></script>
 <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
 <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
@@ -239,7 +40,7 @@
 -->
 	</head>
 
-	<body>
+	<body onload="text=document.getElementById('text');">
 
 		<div class="datamain">
 			<!---头部 开始 --->
@@ -263,8 +64,8 @@
 				</div>
 			</div>
 			<div class="data-nums" style="margin-top:20px;"><em id="maxTemperature" class="wow flipInY">21°</em><span>本日最高温度</span></div>
-			<div class="data-nums"><em style="color:#0FF" id="minTemperature"  class="wow flipInY">21°</em><span>本日最低温度</span></div>
-			<div class="data-nums"><em style="color:#0FF" id="avgTemperature"  class="wow flipInY">21°</em><span>本日平均温度</span></div>
+			<div class="data-nums"><em style="color:#0FF" id="minTemperature" class="wow flipInY">21°</em><span>本日最低温度</span></div>
+			<div class="data-nums"><em style="color:#0FF" id="avgTemperature" class="wow flipInY">21°</em><span>本日平均温度</span></div>
 
 			<div class="data-nums"><em style="color:#0FF;margin-top: 20%;font-size: 20px;" class="wow flipInY">24小时温度监测</em></div>
 			<div id="container" style="width:100%;height:300px; margin:20px auto 0 auto" class="wow zoomIn"></div>
@@ -272,9 +73,24 @@
 			<div class="data-nums"><em style="color:#0FF;margin-top: 20%;font-size: 20px;" class="wow flipInY">历史7天温度记录</em></div>
 			<div id="container1" style="width:100%;height:300px; margin:20px auto 0 auto" class="wow zoomIn"></div>
 
+			<div>
 
+
+			</div>
 		</div>
-		<div style="width: 2%; height: 50px; background-color: red;position: fixed;bottom: 5%;"></div>
+		<!-- <div style="width: 2%; height: 50px; background-color: red;position: fixed;bottom: 5%;"></div> -->
+		<div>
+			<button style="height: 50px; width: 100%;display: block;position: fixed;bottom: 0px;" class="button" onclick="startRecognize()">开始语音识别</button>
+			
+			<br />
+			<!-- <textarea readonly="readonly" id="text" onchange="showInfo(this)" style="margin:2%;padding:2%;height:60px;width:90%;border:1px solid #6C6C6C;-webkit-border-radius: 2px;border-radius: 2px;-webkit-appearance:none;">
+			语音输入内容
+					</textarea> -->
+			
+			<div style="display: none;" id="outpos" />
+			<div style="display: none;" id="output">
+			</div>
+		</div>
 	</body>
 
 </html>
