@@ -6,6 +6,7 @@
 				getSomeInfo();
 				getHouseTemperature();
 				 getDaysTemperature();
+				getSevenDay();
 				setInterval(function() {
 					getTemperature();
 				}, 10000)
@@ -48,6 +49,7 @@
 				});
 			}
 			
+			//ajax获取历史七天温度
 			function getDaysTemperature(){
 				$.ajax({
 					url: "http://192.168.8.119:8080/jsp/getDaysTemperature",
@@ -64,6 +66,7 @@
 				});
 			}
 			
+			//ajax获取当天最高最低平均温度
 			function getSomeInfo(){
 				$.ajax({
 					url: "http://192.168.8.119:8080/jsp/getSomeInfo",
@@ -77,6 +80,24 @@
 						$("#maxTemperature").text(data.max);
 						$("#minTemperature").text(data.min);
 						$("#avgTemperature").text(data.avg);
+					}
+				});
+			}
+			
+			//ajax获取未来七天温度
+			function getSevenDay(){
+				$.ajax({
+					url: "http://192.168.8.119:8080/jsp/getsevenday",
+					type: "post",
+					dataType: "jsonp",
+					jsonpCallback: "successCallback6", //指定回调函数名称
+					success: function(data) {
+						$("#yuceul li").remove();
+						$.each(data,function(index,item){
+							var dom = `<li><span class="date">${item.date}</span><span class="weather">${item.tq}</span> <span class="temperature">${item.wd}</span></li>`;
+							$("#yuceul").append(dom); 
+						})     
+						
 					}
 				});
 			}
