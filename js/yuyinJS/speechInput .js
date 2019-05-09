@@ -12,9 +12,10 @@
 				plus.speech.startRecognize(options, function(s) {
 					outLine(s);
 					// text.value += s;
+					console.log(s) ;
 					content = s
 					$.ajax({
-						url: "http://192.168.8.119:8080/jsp/test",
+						url: "http://192.168.8.94:8080/getTTS",
 						type: "get",
 						dataType: "jsonp",
 						async: false,
@@ -23,9 +24,10 @@
 						},
 						jsonpCallback: "successCallback5",
 						success: function(msg) {
-							alert(111)
-							console.log(msg.result);
-		
+							$("#sy").remove();
+							var audi="<audio  id='sy' src='' autoplay='autoplay' style='display:none' controls='controls' ></audio>";
+							$("#outpos").after(audi)
+							$("#sy").attr("src",msg.result);
 						},
 						error: function() {
 							alert("通讯错误")
@@ -38,9 +40,6 @@
 				});
 		
 			}
-		
 			function showInfo(obj) {
-				alert(11)
 				var content = $(this).val();
-		
 			}
