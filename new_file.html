@@ -4,26 +4,86 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<script type="text/javascript" src="js/jquery-1.12.4.js" ></script>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=7773732a766633139ed525bb0f41b0dc"></script> 
 		<script>
 			$(function(){
-				$.ajax({
-						url:"http://192.168.8.118:8080/jsp/getLastTemperature?machineID=1",
-						type:"get",
-						dataType:"jsonp",
-						jsonpCallback: "successCallback",  //指定回调函数名称
-						success:function(data){
-							//console.log(data)
-							//$("#sx2").text(data)
-							 console.info("调用success");
-							 console.log(data.temperature.temperature)
-						}
-				});
 				
+				getLocation();
+				// 构造地图对象的方法一：使用地图容器ID创建
+				var map = new AMap.Map('container',{
+				    zoom: 10,  //设置地图显示的缩放级别
+				    center: [118.74670071428573,31.985574714285714],//设置地图中心点坐标
+				    layers: [new AMap.TileLayer.Satellite()],  //设置图层,可设置成包含一个或多个图层的数组
+				    mapStyle: 'amap://styles/whitesmoke',  //设置地图的显示样式
+				     pitch:75, // 地图俯仰角度，有效范围 0 度- 83 度
+				    viewMode: '3D',  //设置地图模式
+				    lang:'zh_cn',  //设置地图语言类型
+				});
 			})
-			
+			function getLocationa(){
+		        if(navigator.geolocation){
+		            navigator.geolocation.getCurrentPosition(function(pos){
+		                console.log("经度："+pos.coords.longitude+
+		                "纬度："+pos.coords.latitude+
+		                "精准度："+pos.coords.accuracy+
+		                "海拔："+pos.coords.altitude+
+		                "朝向："+pos.coords.heading+
+		                "速度："+pos.coords.speed
+		                )//经度：118.74670071428573纬度：31.985574714285714
+		            })
+		        }else{
+		            console.log("当前系统不支持GPS API")
+		        }
+	        }
+			function getLocation(){
+       var options={
+           enableHighAccuracy:true, 
+           maximumAge:1000
+       }
+       if(navigator.geolocation){
+           //浏览器支持geolocation
+           // alert("浏览器支持geolocation");
+           navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+
+        }else{
+            //浏览器不支持geolocation
+            alert("浏览器不支持geolocation");
+        }
+  }
+			function onSuccess(pos){
+			       console.log("经度："+pos.coords.longitude+
+		                "纬度："+pos.coords.latitude+
+		                "精准度："+pos.coords.accuracy+
+		                "海拔："+pos.coords.altitude+
+		                "朝向："+pos.coords.heading+
+		                "速度："+pos.coords.speed)
+			 }
+			function onError(error){
+               switch(error.code){
+
+                   case 1:
+                   alert("位置服务被拒绝");
+                   break;
+
+                   case 2:
+                   alert("暂时获取不到位置信息");
+                   break;
+
+                   case 3:
+                   alert("获取信息超时");
+                   break;
+
+                   case 4:
+                    alert("未知错误");
+                   break;
+               }
+
+            }
+
 			
 		</script>
 	</head>
 	<body>
+		<div style="width:300px; height: 180px; " id="container"></div> 
 	</body>
 </html>
