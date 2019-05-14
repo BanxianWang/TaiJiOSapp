@@ -35,7 +35,7 @@
 			//ajax获取24小温度
 			function getHouseTemperature(){
 				$.ajax({
-					url: "http://192.168.1.13:8080/jsp/getHoursTemperature",
+					url: "http://106.14.208.219:8080/taijios/jsp/getHoursTemperature",
 					type: "post",
 					data: {
 						machineID: 1
@@ -52,7 +52,7 @@
 			//ajax获取历史七天温度
 			function getDaysTemperature(){
 				$.ajax({
-					url: "http://192.168.1.13:8080/jsp/getDaysTemperature",
+					url: "http://106.14.208.219:8080/taijios/jsp/getDaysTemperature",
 					type: "post",
 					data: {
 						machineID: 1
@@ -69,7 +69,7 @@
 			//ajax获取当天最高最低平均温度
 			function getSomeInfo(){
 				$.ajax({
-					url: "http://192.168.1.13:8080/jsp/getSomeInfo",
+					url: "http://106.14.208.219:8080/taijios/jsp/getSomeInfo",
 					type: "post",
 					data: {
 						machineID: 1
@@ -87,7 +87,7 @@
 			//ajax获取未来七天温度
 			function getSevenDay(){
 				$.ajax({
-					url: "http://192.168.1.13:8080/jsp/getsevenday",
+					url: "http://106.14.208.219:8080/taijios/jsp/getsevenday",
 					type: "post",
 					dataType: "jsonp",
 					jsonpCallback: "successCallback6", //指定回调函数名称

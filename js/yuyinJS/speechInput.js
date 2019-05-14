@@ -15,8 +15,8 @@
 					console.log(s) ;
 					content = s
 					$.ajax({
-						url: "http://192.168.1.13:8080/getTTS",
-						type: "get",
+						url: "http://106.14.208.219:8080/taijios/getTTS",
+						type: "post",
 						dataType: "jsonp",
 						async: false,
 						data: {
