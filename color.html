@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head >
+<body  style="background-color: #44A4DE;">
+    <div>
+    	<div id="colordivaa" style=" text-align: center; width: 100%;height: 60px;">
+        	<a href="index.html" style="float: left;">返回首页 </a>
+        	<span style="font-size: 20px; color: #CA6492;">灯光调节</span>
+        	<a href="index.html" style="float: right;">返回首页</a>
+        </div>
+        <div id="colordiv" style="background-color: #FFFFFF; text-align: center; width: 100%;height: 160px;">
+        	灯光颜色预览
+        </div>
+        <span style="color: #ff0000;">R:</span><span id="r">0</span>&nbsp;&nbsp;
+        	<span style="color: #00ff00;">G:</span><span id="g">0</span>&nbsp;&nbsp;
+        	<span style="color: #0000ff;">B:</span><span id="b">0</span>&nbsp;&nbsp;
+        	<span style="color: #000000;">A:</span><span id="a">0.5</span>
+        <h1 style="color: #ff0000;">R</h1><input type="range" id="rgbr" onchange="valchange()" min="0" max="255"  />
+        <br/>
+        <h1 style="color: #00ff00";>G</h1><input type="range" id="rgbg" onchange="valchange()" min="0" max="255"  />
+        <br/>
+        <h1 style="color:#0000ff";>B</h1><input type="range" id="rgbb" onchange="valchange()" min="0" max="255"  />
+        <br/>
+        <h1 style="color: #000000";>A</h1><input type="range" id="rgba" onchange="valchange()" min="0" max="1000"  />
+        <br />
+    </div>
+<link rel="stylesheet" href="css/rangeslider.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/rangeslider.min.js"></script>
+	
+<script>
+	
+	function valchange(){
+		$("#colordiv").css("background-color","rgba("+$("#rgbr").val()+","+$("#rgbg").val()+","+$("#rgbb").val()+","+parseInt($("#rgba").val())/1000+")")
+		$("#r").text($("#rgbr").val())
+		$("#g").text($("#rgbg").val())
+		$("#b").text($("#rgbb").val())
+		$("#a").text(parseInt($("#rgba").val())/1000)
+	}
+    $(function() {
+        // init
+       $('#rgbr').rangeslider({
+            polyfill: false
+        });
+			$('#rgbg').rangeslider({
+            polyfill: false
+        });$('#rgbb').rangeslider({
+            polyfill: false
+        });$('#rgba').rangeslider({
+            polyfill: false
+        });
+        
+
+        
+
+        
+    });
+
+</script>
+
+
+
+</body>
+</html>

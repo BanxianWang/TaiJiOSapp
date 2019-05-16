@@ -4,7 +4,10 @@
 			"aduioTest.html",
 			"data_goodslist.html",
 			"data_total.html",
-			"data_userlist.html"
+			"data_userlist.html",
+			"data_zhichu.html",
+			"wendu.html",
+			"color.html"
 		],
 		"resources": []
 	},
@@ -25,6 +28,21 @@
 		]
 	},
 	"data_userlist.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"data_zhichu.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"wendu.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"color.html": {
 		"refer": [
 			"index.html"
 		]

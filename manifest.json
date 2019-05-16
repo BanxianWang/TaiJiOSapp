@@ -149,7 +149,10 @@
 					"aduioTest.html",
 					"data_goodslist.html",
 					"data_total.html",
-					"data_userlist.html"
+					"data_userlist.html",
+					"data_zhichu.html",
+					"wendu.html",
+					"color.html"
 				],
 				"priority": 0
 			},
@@ -180,6 +183,27 @@
 					"index.html"
 				],
 				"priority": 0
+			},
+			"data_zhichu.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"wendu.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"color.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -205,7 +229,6 @@
 				"images/goods2.jpg",
 				"images/goods4.jpg",
 				"css/img/gif-7-2.png",
-				"data_zhichu.html",
 				"css/data.css",
 				"images/goods5.jpg",
 				"css/img/gif-7-3.png",
