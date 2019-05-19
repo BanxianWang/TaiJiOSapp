@@ -19,7 +19,7 @@
 			//ajax获取实时温度
 			function getTemperature() {
 				$.ajax({
-					url: "http://192.168.1.13:8080/jsp/getLastTemperature",
+					url: "http://106.14.208.219:8080/taijios/jsp/getLastTemperature",
 					type: "post",
 					data: {
 						machineID: 1
