@@ -34,39 +34,8 @@
 			$("#colordiv").css("background-color", "rgba(" + $("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() +
 			"," + parseInt($("#rgba").val())+ ")")
 	});
-	
-</script>
-		<style>
+		</script>
 
-			#gg {
-				width: 100px;
-				height: 100px;
-				background: gold;
-				margin: 100px auto;
-				border-radius: 50%;
-			} 
-			
-			#kaiguan {
-				width: 100px;
-				height: 30px;
-				border: 1px solid grey;
-				border-radius: 15px;
-				margin: 100px auto;
-				cursor: pointer;
-				position: relative
-			}
-			
-			#yuanquan {
-				height: 26px;
-				width: 26px;
-				margin-top: 2px;
-				margin-left: 2px;
-				background: #ccc;
-				border-radius: 50%;
-				transition: transform 0.4s;
-			}
-			
-</style>
 	</head>
 	<body style="background-color: #44A4DE;  ">
 		<div class="datamain">
@@ -82,163 +51,113 @@
 			<!---头部 结束 --->
 
 			<div style="padding-left: 30px;">
-				<div style="position: relative; left: -15px;">
+				<div style="position: relative; left: -15px;padding-bottom:100px ; margin-top:30px ;">
 					<div id="colordiv" style="background-color: #FFFFFF; text-align: center; width: 100%;height: 160px; ">
 						灯光颜色预览
 					</div>
 				</div>
-				<span style="color: #ff0000;">R:</span><span id="r">255</span>&nbsp;&nbsp;
-				<span style="color: #00ff00;">G:</span><span id="g">255</span>&nbsp;&nbsp;
-				<span style="color: #0000ff;">B:</span><span id="b">255</span>&nbsp;&nbsp;
+				<span style="color: #ff0000;">R:</span><span id="r">0</span>&nbsp;&nbsp;
+				<span style="color: #00ff00;">G:</span><span id="g">0</span>&nbsp;&nbsp;
+				<span style="color: #0000ff;">B:</span><span id="b">0</span>&nbsp;&nbsp;
 				<span style="color: #000000;">A:</span><span id="a">1000</span>
+				
+					<br />
+					<br />
+					<h1 style="color: #ff0000;">R</h1><br /><input type="range" id="rgbr" onchange="valchange()" value="0" min="0" max="255" />
+					<br />
+					<br />
+					<br />
+					<h1 style="color: #00ff00" ;>G</h1><br /><input type="range" id="rgbg" onchange="valchange()" value="0" min="0"
+					 max="255" />
+					<br />
+					<br />
+					<br />
+					<h1 style="color:#0000ff" ;>B</h1><br /><input type="range" id="rgbb" onchange="valchange()" value="0" min="0" max="255" />
+					<br />
+					<br />
+					<br />
+					<h1 style="color: #000000" ;>A</h1><br /><input type="range" id="rgba" onchange="valchange()" value="1000" step="100"
+					 min="100" max="1000" />
 
-				<br />
-				<br />
-				<h1 style="color: #ff0000;">R</h1><input type="range" id="rgbr" onchange="valchange()" value="255" min="0" max="255" />
-				<br />
-				<br />
-				<br />
-				<h1 style="color: #00ff00" ;>G</h1><input type="range" id="rgbg" onchange="valchange()" value="255" min="0" max="255" />
-				<br />
-				<br />
-				<br />
-				<br />
-				<h1 style="color:#0000ff" ;>B</h1><input type="range" id="rgbb" onchange="valchange()" value="255" min="0" max="255" />
-				<br />
-				<br />
-				<br />
-				<br />
-				<h1 style="color: #000000" ;>A</h1><input type="range" id="rgba" onchange="valchange()" value="1000" step="100" min="100"
-				 max="1000" />
+					<br />
+					<br />
 			
-				<br />
-				<br />
-				<!-- <p style="background-color: #00FFFF; height: 50px; width: 30%;font-size: 40px;text-align: center;margin: 0 auto;" -->
-				<!-- onclick="kaiguan()">开</p> -->
-				<div id="kaiguan" style="position: fixed; bottom: 0;">
-					<div id="yuanquan">
-
-					</div>
+		</div>
+				<div style="height: 40px; width: 50%;background-color: red;margin: 0px auto;margin-top: 5%;">
+					<button style="height: 100%;width: 50%;" type="button" onclick="kai()">开灯</button>
+					<button style="height: 100%;width: 50%;float: right;" type="button" onclick="guan()">关灯</button>
 				</div>
-			</div>
-			<link rel="stylesheet" href="css/rangeslider.css">
-			<script src="js/jquery.min.js"></script>
-			<script src="js/rangeslider.min.js"></script>
+				<link rel="stylesheet" href="css/rangeslider.css">
+				<script src="js/jquery.min.js"></script>
+				<script src="js/rangeslider.min.js"></script>
 
-			<script>
-				function kaiguan() {
-
-				}
-				var index = 0;
-
-				function valchange() {
-					if (index == 1) {
-						index = 0;
-						return;
+				<script>
+					function kai() {
+						$("#r").text(255)
+						$("#g").text(255)
+						$("#b").text(255)
+						$("#a").text(1000)
+						$("#rgbr").val(255).change();
+						$("#rgbg").val(255).change();
+						$("#rgbb").val(255).change();
+						$("#rgba").val(1000).change();
+						$("#colordiv").css("background-color", "rgba(" + $("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() +
+							"," + parseInt($("#rgba").val()) + ")")
+						$.ajax({
+							url: "http://106.14.208.219:8080/taijios/tcptcp/rgb",
+							data: {
+								rgb: "255,255,255,1000"
+							},
+							type: "post"
+						})
 					}
-					$("#colordiv").css("background-color", "rgba(" + $("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() +
-						"," + parseInt($("#rgba").val()) + ")")
-					$("#r").text($("#rgbr").val())
-					$("#g").text($("#rgbg").val())
-					$("#b").text($("#rgbb").val())
-					$("#a").text(parseInt($("#rgba").val()))
-					$.ajax({
-						url: "http://106.14.208.219:8080/taijios/tcptcp/rgb",
-						data: {
-							rgb: $("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() + "," + $("#rgba").val()
-						},
-						type: "post"
-					})
-					console.log($("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() + "," + $("#rgba").val())
-					index++;
-				}
-			</script>
+ 
+					function guan() {
+						$("#r").text(0)
+						$("#g").text(0)
+						$("#b").text(0)
+						$("#a").text(1000)
+						$("#rgbr").val(0).change();
+						$("#rgbg").val(0).change();
+						$("#rgbb").val(0).change();
+						$("#rgba").val(1000).change();
+						$("#colordiv").css("background-color", "rgba(" + $("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() +
+							"," + parseInt($("#rgba").val()) + ")")
+						$.ajax({
+							url: "http://106.14.208.219:8080/taijios/tcptcp/rgb",
+							data: {
+								rgb: "0,0,0,1000"
+							},
+							type: "post"
+						})
+					}
+					var index = 0;
+
+					function valchange() {
+						if (index == 1) {
+							index = 0;
+							return;
+						}
+						$("#colordiv").css("background-color", "rgba(" + $("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() +
+							"," + parseInt($("#rgba").val()) + ")")
+						$("#r").text($("#rgbr").val())
+						$("#g").text($("#rgbg").val())
+						$("#b").text($("#rgbb").val())
+						$("#a").text(parseInt($("#rgba").val()))
+						$.ajax({
+							url: "http://106.14.208.219:8080/taijios/tcptcp/rgb",
+							data: {
+								rgb: $("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() + "," + $("#rgba").val()
+							},
+							type: "post"
+						})
+						console.log($("#rgbr").val() + "," + $("#rgbg").val() + "," + $("#rgbb").val() + "," + $("#rgba").val())
+						index++;
+					}
+				</script>
 
 
 
 	</body>
 
-	<script>
-		var kaiguan = document.getElementById("kaiguan")
-		var yuanquan = document.getElementById("yuanquan")
-		var isopen = false;
-
-		kaiguan.onclick = function(e) {
-			if (isopen === false) {
-				yuanquan.style["transform"] = "translateX(69px)"
-				yuanquan.style["background"] = "#fff"
-				kaiguan.style["background"] = "green"
-				kaiguan.style["border-color"] = "#fff"
-				$.ajax({
-					url: "http://106.14.208.219:8080/taijios/tcptcp/rgb",
-					data: {
-						rgb: '255,255,255,1000'
-					},
-					type: "post"
-				})
-				$("#r").text(255)
-				$("#g").text(255)
-				$("#b").text(255)
-				$("#rgbr").val(255)
-				$("#rgbg").val(255)
-				$("#rgbb").val(255)
-				$("#colordiv").css("background-color", "rgba(255,255,255,1000)")
-			} else {
-				yuanquan.style["transform"] = "translateX(0px)"
-				yuanquan.style["background"] = "#ccc"
-				kaiguan.style["background"] = "#fff"
-				kaiguan.style["border-color"] = "grey"
-				$.ajax({
-					url: "http://106.14.208.219:8080/taijios/tcptcp/rgb",
-					data: {
-						rgb: '0,0,0,1000'
-					},
-					type: "post"
-				})
-				$("#colordiv").css("background-color", "rgba(0,0,0,1000)")
-				$("#r").text(0)
-				$("#g").text(0)
-				$("#b").text(0)
-				$("#rgbr").val(0)
-				$("#rgbg").val(0)
-				$("#rgbb").val(0)
-			}
-			isopen = !isopen
-		}
-		
-		var gg = document.getElementById("gg")
-
-		var ischange = false;
-
-		gg.onclick = function(e) {
-			if (ischange === false) {
-				gg.style["background"] = "red";
-
-			} else {
-				gg.style["background"] = "gold"
-
-			}
-
-			ischange = !ischange
-		}
-
-		gg.onmouseover = function(e) {
-			console.log("鼠标悬浮")
-		}
-		gg.onmouseout = function(e) {
-			console.log("鼠标离开")
-		}
-		gg.onmousedown = function(e) {
-			console.log("鼠标按下")
-		}
-		gg.onmouseup = function(e) {
-			console.log("鼠标抬起")
-		}
-		gg.ondblclick = function(e) {
-			console.log("鼠标双击")
-		}
-		gg.oncontextmenu = function(e) {
-			console.log("鼠标右击")
-		}
-	</script>
 </html>
