@@ -137,7 +137,15 @@
 				m1.setPosition(data.position);
 				m2.setPosition(data.position);
 				m1.position = data.position;
-
+				var gps=parseFloat(getQueryString("latitude")) ; 
+				var gps1=parseFloat(getQueryString("longitude"));
+				if(gps==null||gps==""||isNaN(gps)||gps1==null||gps1==""||isNaN(gps1)){
+					
+				}else{
+					m2.position = new AMap.LngLat(gps1, gps);
+					m2.setPosition(new AMap.LngLat(gps1, gps));
+				}
+			
 				str.push('定位类别：' + data.location_type);
 				if (data.accuracy) {
 					str.push('精度：' + data.accuracy + ' 米');
@@ -290,8 +298,20 @@
 			function shuaxin() {
 				location.href = "ditu.html";
 			}
+
+			function getQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+				var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+				var r = window.location.search.substr(1).match(reg);
+				var q = window.location.pathname.substr(1).match(reg_rewrite);
+				if (r != null) {
+					return unescape(r[2]);
+				} else if (q != null) {
+					return unescape(q[2]);
+				} else {
+					return null;
+				}
+			}
 		</script>
-
-
 	</body>
 </html>
