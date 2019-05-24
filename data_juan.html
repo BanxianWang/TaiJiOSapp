@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>爱心捐赠记录</title>
+<title>附件商家查询</title>
 <meta name="keywords" content="有爱的" />
 <meta name="description" content="有爱的" />
 <link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon"/>
@@ -10,8 +10,15 @@
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/data.css"/>
 <link href="css/iconfont/Rjdaoico.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/yuyinJS/common.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+
+
+<script src="js/yuyinJS/speechInput .js"></script>
+
 <!--下拉动画-->
 <link rel="stylesheet" href="css/animate.min.css"/>
 <script type="text/javascript" src="js/wow.min.js"></script>
@@ -25,28 +32,53 @@
 </script>
 <!--下拉动画-->
 <script type="text/javascript">
-	function timer(opj){
-		$(opj).find('ul').animate({
-			marginTop : "-3.0rem"  
-			},500,function(){  
-			$(this).css({marginTop : "0.0rem"}).find("a:first").appendTo(this);  
-		})  
-	}
-	$(function(){ 
-		var num = $('.notice_active').find('a').length;
-		if(num > 1){
-		   var time=setInterval('timer(".notice_active")',3500);
-			$('.gg_more a').mousemove(function(){
-				clearInterval(time);
-			}).mouseout(function(){
-				time = setInterval('timer(".notice_active")',3500);
-			}); 
+	$.ajax({
+		url: "http://106.14.208.219:8080/taijios/getshopTTS",
+		type: "post",
+		data: {
+			machineID: 1,
+			str:"帮我在附件找一个网吧" 
+		},
+		dataType: "jsonp",
+		jsonpCallback: "successCallback5", //指定回调函数名称
+		success: function(data) {
+			$("#sname1").text(data.shops[0].sName)
+			$("#sname2").text(data.shops[1].sName)
+			$("#sname3").text(data.shops[2].sName)
+			$("#sname4").text(data.shops[3].sName)
+			$("#sname5").text(data.shops[4].sName)
+			
+			$("#avgf1").text(data.shops[0].avgcomment)
+			$("#avgf2").text(data.shops[1].avgcomment)
+			$("#avgf3").text(data.shops[2].avgcomment)
+			$("#avgf4").text(data.shops[3].avgcomment)
+			$("#avgf5").text(data.shops[4].avgcomment)
+			$("#saddress1").text(data.shops[0].saddress)
+			$("#saddress2").text(data.shops[1].saddress)
+			$("#saddress3").text(data.shops[2].saddress)
+			$("#saddress4").text(data.shops[3].saddress)
+			$("#saddress5").text(data.shops[4].saddress)
+			
+			$("#pcount1").text(data.shops[0].pcount)
+			$("#pcount2").text(data.shops[1].pcount)
+			$("#pcount3").text(data.shops[2].pcount)
+			$("#pcount4").text(data.shops[3].pcount)
+			$("#pcount5").text(data.shops[4].pcount)
+			
+			$("#avgprice1").text(data.shops[0].avgprice)
+			$("#avgprice2").text(data.shops[1].avgprice)
+			$("#avgprice3").text(data.shops[2].avgprice)
+			$("#avgprice4").text(data.shops[3].avgprice)
+			$("#avgprice5").text(data.shops[4].avgprice)
+			
+			$("#simg1").attr("src",data.shops[0].imgurl);
+			$("#simg2").attr("src",data.shops[1].imgurl);
+			$("#simg3").attr("src",data.shops[2].imgurl);
+			$("#simg4").attr("src",data.shops[3].imgurl);
+			$("#simg5").attr("src",data.shops[4].imgurl);
 		}
-		
-		$(".news_ck").click(function(){
-			location.href = $(".notice_active .notice_active_ch").children(":input").val();
-		})
 	});
+	
 </script>
 
 </head>
@@ -59,327 +91,146 @@
 	<div class="data-nav">
     	<div class="bw">
         	<a href="javascript:history.go(-1)" class="l"><i class="icon-eee3"></i></a>
-            	<div class="name">爱心捐赠记录</div>
-        	<a href="user_doubt.html" class="r"><i class="icon-ecfa"></i></a>
+            	<div class="name">附近商家查询</div>
+        	<a href="JavaScript:void(0)"  onclick="startRecognize()" class="r"><i class="icon-ecfa"></i></a>
         </div>
     </div>
+	
+	
     <div class="h-height"></div>
-<!---头部 结束 --->
+<!---头部 结束 ajax >>>>getshopTTS shops.list--->
 
 
-<div class="data-nums3" style="margin-top:30px; margin-bottom:40px;"><em class="wow flipInY">6782620.00</em><span>受捐金额</span></div>
-
-
-
-<div class="data-juan-list">
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>程意</span>
-            <dl>136****9881</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>索朗措姆</span>
-            <dl>136****0062</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥8.80</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>刘光阳</span>
-            <dl>183****9769</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥5.20</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>将军</span>
-            <dl>138****0255</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>张军了</span>
-            <dl>183****2132</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥1.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>程意</span>
-            <dl>136****9881</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>索朗措姆</span>
-            <dl>136****0062</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥8.80</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>刘光阳</span>
-            <dl>183****9769</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥5.20</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>将军</span>
-            <dl>138****0255</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>张军了</span>
-            <dl>183****2132</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥1.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>程意</span>
-            <dl>136****9881</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>索朗措姆</span>
-            <dl>136****0062</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥8.80</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>刘光阳</span>
-            <dl>183****9769</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥5.20</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>将军</span>
-            <dl>138****0255</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>张军了</span>
-            <dl>183****2132</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥1.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>程意</span>
-            <dl>136****9881</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>索朗措姆</span>
-            <dl>136****0062</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥8.80</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>刘光阳</span>
-            <dl>183****9769</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥5.20</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>将军</span>
-            <dl>138****0255</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>张军了</span>
-            <dl>183****2132</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥1.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>程意</span>
-            <dl>136****9881</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>索朗措姆</span>
-            <dl>136****0062</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥8.80</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>刘光阳</span>
-            <dl>183****9769</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥5.20</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>将军</span>
-            <dl>138****0255</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>张军了</span>
-            <dl>183****2132</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥1.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>程意</span>
-            <dl>136****9881</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>索朗措姆</span>
-            <dl>136****0062</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥8.80</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>刘光阳</span>
-            <dl>183****9769</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥5.20</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>将军</span>
-            <dl>138****0255</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥10.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
-    <a href="" class="item-name">
-    	<div class="coml wow slideInRight">
-            <span>张军了</span>
-            <dl>183****2132</dl>
-        </div>
-        <div class="comr">
-            <span class="wow slideInLeft">￥1.00</span>
-            <i class="icon-eed3"></i>
-        </div>
-    </a>
+<div class="data-juan-list" style="height: 2000px; width: 100%; top: -100px; position: absolute;">
+    
+	
+	<div id="shoptop" style="width: 100%; height: 150px;" ></div>
+	
+	
+    <div id="shop1"  class="data-nums3" style="position: relative;">
+		<div id="pic" style="position: relative; left: 10px;">
+			<img  id="simg1" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
+		</div>
+    	<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
+    		<span  id="sname1" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+    		
+    		<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
+    		<span  id="avgf1" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+    		</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
+			<span id="pcount1" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
+			<span id="avgprice1" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			</span>
+			<span id="latitude" style="display: none;" ></span>
+			<span id="longitude" style="display: none;" ></span>
+			<span  id="saddress1" style="font-size: 14px; color: #DDFFDD; position: relative; left: -100px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
+			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+    	</div>
+    </div>
+	
+	<div id="shop2"  class="data-nums3" style="position: relative;">
+		<div id="pic" style="position: relative; left: 10px;">
+			<img  id="simg2" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
+		</div>
+		<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
+			<span  id="sname2" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+			
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
+			<span  id="avgf2" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
+			<span id="pcount2" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
+			<span id="avgprice2" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			</span>
+			<span id="latitude" style="display: none;" ></span>
+			<span id="longitude" style="display: none;" ></span>
+			<span  id="saddress2" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
+			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+		</div>
+	</div>
+	
+	<div id="shop3"  class="data-nums3" style="position: relative;">
+		<div id="pic" style="position: relative; left: 10px;">
+			<img  id="simg3" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
+		</div>
+		<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
+			<span  id="sname3" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+			
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
+			<span  id="avgf3" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
+			<span id="pcount3" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
+			<span id="avgprice3" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			</span>
+			<span id="latitude" style="display: none;" ></span>
+			<span id="longitude" style="display: none;" ></span>
+			<span  id="saddress3" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
+			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+		</div>
+	</div>
+	
+	<div id="shop4"  class="data-nums3" style="position: relative;">
+		<div id="pic" style="position: relative; left: 10px;">
+			<img  id="simg4" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
+		</div>
+		<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
+			<span  id="sname4" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+			
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
+			<span  id="avgf4" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
+			<span id="pcount4" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
+			<span id="avgprice4" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			</span>
+			<span id="latitude" style="display: none;" ></span>
+			<span id="longitude" style="display: none;" ></span>
+			<span  id="saddress4" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
+			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+		</div>
+	</div>
+	
+	<div id="shop5"  class="data-nums3" style="position: relative;">
+		<div id="pic" style="position: relative; left: 10px;">
+			<img  id="simg5" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
+		</div>
+		<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
+			<span  id="sname5" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+			
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
+			<span  id="avgf5" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
+			<span id="pcount5" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			</span>
+			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
+			<span id="avgprice5" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			</span>
+			<span id="latitude" style="display: none;" ></span>
+			<span id="longitude" style="display: none;" ></span>
+			<span  id="saddress5" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
+			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+		</div>
+	</div>
+	
+	
+	
+    
+    
 </div>
 
-<div class="pageType">
-<ul class="pagination">
-<li class="disabled"><dl>上一页</dl></li>
-<li><a href="">下一页</a></li>
-<li class='pageRemark'>共<b>3</b>页 <b>43</b>条数据</li>
-</ul>
+<div>
+	<div style="display: none;" id="outpos"></div>
+	<div style="display: none;" id="output"></div>
 </div>
 
 
