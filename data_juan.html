@@ -27,7 +27,21 @@
 		new WOW().init();
 	};
 	$(function(){
-		
+		$("#ditu1").click(function(){
+			location.href="ditu.html?latitude="+$("#latitude1").text()+"&longitude="+$("#longitude1").text();
+		})
+		$("#ditu2").click(function(){
+			location.href="ditu.html?latitude="+$("#latitude2").text()+"&longitude="+$("#longitude2").text();
+		})
+		$("#ditu3").click(function(){
+			location.href="ditu.html?latitude="+$("#latitude3").text()+"&longitude="+$("#longitude3").text();
+		})
+		$("#ditu4").click(function(){
+			location.href="ditu.html?latitude="+$("#latitude4").text()+"&longitude="+$("#longitude4").text();
+		})
+		$("#ditu5").click(function(){
+			location.href="ditu.html?latitude="+$("#latitude5").text()+"&longitude="+$("#longitude5").text();
+		})
 	});
 </script>
 <!--下拉动画-->
@@ -76,9 +90,25 @@
 			$("#simg3").attr("src",data.shops[2].imgurl);
 			$("#simg4").attr("src",data.shops[3].imgurl);
 			$("#simg5").attr("src",data.shops[4].imgurl);
-		}
+			
+			
+			$("#latitude1").text(data.shops[1].latitude);
+			$("#longitude1").text(data.shops[1].longitude);
+			
+			$("#latitude2").text(data.shops[2].latitude);
+			$("#longitude2").text(data.shops[2].longitude);
+			
+			$("#latitude3").text(data.shops[3].latitude);
+			$("#longitude3").text(data.shops[3].longitude);
+			
+			$("#latitude4").text(data.shops[4].latitude);
+			$("#longitude4").text(data.shops[4].longitude);
+			
+			$("#latitude5").text(data.shops[5].latitude);
+			$("#longitude5").text(data.shops[5].longitude);
+			
+		}	
 	});
-	
 </script>
 
 </head>
@@ -112,21 +142,21 @@
 			<img  id="simg1" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
 		</div>
     	<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
-    		<span  id="sname1" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+    		<span  id="sname1" style="font-size: 16px; color: #DDFFDD; position: relative;"></span>
     		
     		<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
-    		<span  id="avgf1" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+    		<span  id="avgf1" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; "></span>
     		</span>
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
-			<span id="pcount1" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			<span id="pcount1" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; "></span>人评分
 			</span>
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
-			<span id="avgprice1" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			<span id="avgprice1" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; "></span>
 			</span>
-			<span id="latitude" style="display: none;" ></span>
-			<span id="longitude" style="display: none;" ></span>
-			<span  id="saddress1" style="font-size: 14px; color: #DDFFDD; position: relative; left: -100px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
-			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			<span id="latitude1" style="display: none;" ></span>
+			<span id="longitude1" style="display: none;" ></span>
+			<span  id="saddress1" style="font-size: 14px; color: #DDFFDD; position: relative; left: -100px; top: 15px; "></span>
+			<button id="ditu1" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
     	</div>
     </div>
 	
@@ -135,21 +165,21 @@
 			<img  id="simg2" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
 		</div>
 		<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
-			<span  id="sname2" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+			<span  id="sname2" style="font-size: 16px; color: #DDFFDD; position: relative;"></span>
 			
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
-			<span  id="avgf2" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+			<span  id="avgf2" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; "></span>
 			</span>
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
-			<span id="pcount2" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			<span id="pcount2" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; "></span>人评分
 			</span>
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
-			<span id="avgprice2" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			<span id="avgprice2" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; "></span>
 			</span>
-			<span id="latitude" style="display: none;" ></span>
-			<span id="longitude" style="display: none;" ></span>
-			<span  id="saddress2" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
-			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			<span id="latitude2" style="display: none;" ></span>
+			<span id="longitude2" style="display: none;" ></span>
+			<span  id="saddress2" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; "></span>
+			<button id="ditu2" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
 		</div>
 	</div>
 	
@@ -158,21 +188,21 @@
 			<img  id="simg3" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
 		</div>
 		<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
-			<span  id="sname3" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+			<span  id="sname3" style="font-size: 16px; color: #DDFFDD; position: relative;"></span>
 			
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
-			<span  id="avgf3" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+			<span  id="avgf3" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; "></span>
 			</span>
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
-			<span id="pcount3" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			<span id="pcount3" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; "></span>人评分
 			</span>
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
-			<span id="avgprice3" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			<span id="avgprice3" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; "></span>
 			</span>
-			<span id="latitude" style="display: none;" ></span>
-			<span id="longitude" style="display: none;" ></span>
-			<span  id="saddress3" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
-			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			<span id="latitude3" style="display: none;" ></span>
+			<span id="longitude3" style="display: none;" ></span>
+			<span  id="saddress3" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; "></span>
+			<button id="ditu3" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
 		</div>
 	</div>
 	
@@ -181,21 +211,21 @@
 			<img  id="simg4" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
 		</div>
 		<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
-			<span  id="sname4" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+			<span  id="sname4" style="font-size: 16px; color: #DDFFDD; position: relative;"></span>
 			
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
-			<span  id="avgf4" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
+			<span  id="avgf4" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; "></span>
 			</span>
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: 70px;top: -35px;">
-			<span id="pcount4" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; ">412</span>人评分
+			<span id="pcount4" style="font-size: 16px ; color: #FFD700;position: relative;left: -40px;top: 21px; "></span>人评分
 			</span>
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
-			<span id="avgprice4" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
+			<span id="avgprice4" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; "></span>
 			</span>
-			<span id="latitude" style="display: none;" ></span>
-			<span id="longitude" style="display: none;" ></span>
-			<span  id="saddress4" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
-			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			<span id="latitude4" style="display: none;" ></span>
+			<span id="longitude4" style="display: none;" ></span>
+			<span  id="saddress4" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; "></span>
+			<button id="ditu4" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
 		</div>
 	</div>
 	
@@ -204,7 +234,7 @@
 			<img  id="simg5" width="100px" height="100px" src="https://p1.meituan.net/wedding/de4cb3de04b379fa10c48dda39455c80363381.jpg" >
 		</div>
 		<div id="shopinfo" style="position: relative; left: 60px;top: -100px;">
-			<span  id="sname5" style="font-size: 16px; color: #DDFFDD; position: relative;">青春飞扬网咖（奥体大街艾玩尚店）</span>
+			<span  id="sname5" style="font-size: 16px; color: #DDFFDD; position: relative;"></span>
 			
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: 10px;">人均评分：
 			<span  id="avgf5" style="font-size: 22px ; color: #FF6600;position: relative;left: 50px;top: -18px; ">4.7</span>
@@ -215,10 +245,10 @@
 			<span style="font-size: 14px; color: #DDFFDD; position: relative; left: -90px;top: -5px;">人均消费：
 			<span id="avgprice5" style="font-size: 18px; color: yellow;position: relative;left: 50px;top: -18px; ">12</span>
 			</span>
-			<span id="latitude" style="display: none;" ></span>
-			<span id="longitude" style="display: none;" ></span>
+			<span id="latitude5" style="display: none;" ></span>
+			<span id="longitude5" style="display: none;" ></span>
 			<span  id="saddress5" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
-			<button id="ditu" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			<button id="ditu5" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
 		</div>
 	</div>
 	
