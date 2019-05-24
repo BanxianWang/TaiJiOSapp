@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
- 
+
 	<head>
 		<meta charset="utf-8">
 		<title>平台总额度</title>
@@ -19,7 +19,7 @@
 		<script src="js/temperature/bindTemperature.js"></script>
 
 		<script src="js/yuyinJS/speechInput .js"></script>
-<!--语音输入控件-->
+		<!--语音输入控件-->
 
 
 		<!--语音输入控件-->
@@ -32,59 +32,66 @@
 				height: 30%;
 				width: 90%;
 			}
-			
-			
 
-		#yuceul{
-			margin-top: 50px;
-			width: 100%;
-			height: 450px;
-			list-style: none;	
-			
-		}
-		#yuceul li{
-			display: inline-block;
-			width: 100%;
-			height: 50px;
-			border-bottom: solid gainsboro 1px;
-			line-height: 50px;
-			
-		}
-		#yuceul:first-child{
-			border-top: solid gainsboro 1px;
-		}
-		#yuceul:last-child{
-			border-bottom: none;
-			text-align: center;
-			
-		}
-		.date{
-			float: left;
-			padding-left: 40px;
-			color: white;
-		}
-		.weather{
-			color: white;
-			display: inline-block;
-			width: 100px;
-			position: relative;
-			
-			text-align: center;
-			
-		}
-		.temperature{
-			color: white;
-			float: right;
-			padding-right: 40px;
-			
-		}
-		#yubao{
-			color: gray;
-		}
+
+
+			#yuceul {
+				margin-top: 50px;
+				width: 100%;
+				height: 450px;
+				list-style: none;
+
+			}
+
+			#yuceul li {
+				display: inline-block;
+				width: 100%;
+				height: 50px;
+				border-bottom: solid gainsboro 1px;
+				line-height: 50px;
+
+			}
+
+			#yuceul:first-child {
+				border-top: solid gainsboro 1px;
+			}
+
+			#yuceul:last-child {
+				border-bottom: none;
+				text-align: center;
+
+			}
+
+			.date {
+				float: left;
+				padding-left: 40px;
+				color: white;
+			}
+
+			.weather {
+				color: white;
+				display: inline-block;
+				width: 100px;
+				position: relative;
+
+				text-align: center;
+
+			}
+
+			.temperature {
+				color: white;
+				float: right;
+				padding-right: 40px;
+
+			}
+
+			#yubao {
+				color: gray;
+			}
 		</style>
-		
-		
-	
+
+
+
 
 		<!--<script src="js/highcharts.js"></script>
 <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
@@ -128,20 +135,20 @@
 			<div class="data-nums"><em style="color:#0FF;margin-top: 20%;font-size: 20px;" id="aaaaa" class="wow flipInY">历史7天温度记录</em></div>
 			<div id="container1" style="width:100%;height:300px; margin:20px auto 0 auto" class="wow zoomIn"></div>
 
-		
+
 		</div>
-			
+
 		<div class="datamain">
 			<div class="data-nums"><em style="color:#0FF;margin-top: 20%;font-size: 20px;" class="wow flipInY">未来7天气预测</em></div>
 			<ul id="yuceul">
-				
+
 			</ul>
 		</div>
 		<!-- <div style="width: 2%; height: 50px; background-color: red;position: fixed;bottom: 5%;"></div> -->
-		
+
 		<div>
 			<button style="height: 50px; width: 100%;display: block;position: fixed;bottom: 0px;" class="button" onclick="startRecognize()">开始语音识别</button>
-			
+
 			<br />
 			<!-- <textarea readonly="readonly" id="text" onchange="showInfo(this)" style="margin:2%;padding:2%;height:60px;width:90%;border:1px solid #6C6C6C;-webkit-border-radius: 2px;border-radius: 2px;-webkit-appearance:none;">
 			语音输入内容
@@ -149,6 +156,7 @@
 			<div style="display: none;" id="outpos" />
 			<div style="display: none;" id="output">
 			</div>
+		</div>
 		</div>
 	</body>
 

@@ -1,68 +1,297 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>位置经纬度 + 驾车规划路线</title>
-    <style type="text/css">
-    html,
-    body,
-    #container {
-      width: 100%;
-      height: 100%;
-    }
-    </style>
-    <style type="text/css">
-        #panel {
-            position: fixed;
-            background-color: white;
-            max-height: 90%;
-            overflow-y: auto;
-            top: 10px;
-            right: 10px;
-            width: 280px;
-        }
-        #panel .amap-call {
-            background-color: #009cf9;
-            border-top-left-radius: 4px;
-   	        border-top-right-radius: 4px;
-        }
-        #panel .amap-lib-driving {
-	        border-bottom-left-radius: 4px;
-   	        border-bottom-right-radius: 4px;
-            overflow: hidden;
-        }
-    </style>
-    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
-    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
-    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=7773732a766633139ed525bb0f41b0dc&plugin=AMap.Driving"></script>
-    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
-</head>
-<body>
-<div id="container"></div>
-<div id="panel"></div>
-<script type="text/javascript">
-    //基本地图加载
-    var map = new AMap.Map("container", {
-        resizeEnable: true,
-        center: [116.397428, 39.90923],//地图中心点
-        zoom: 13 //地图显示的缩放级别
-    });
-    //构造路线导航类
-    var driving = new AMap.Driving({
-        map: map,
-        panel: "panel"
-    }); 
-    // 根据起终点经纬度规划驾车导航路线
-    driving.search(new AMap.LngLat(118.76497683222, 31.996682761573), new AMap.LngLat(116.427281, 39.903719), function(status, result) {
-        // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
-        if (status === 'complete') {
-            log.success('绘制驾车路线完成')
-        } else {
-            log.error('获取驾车数据失败：' + result)
-        }
-    });
-</script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>GPS定位</title>
+		<meta name="keywords" content="有爱的" />
+		<meta name="description" content="有爱的" />
+		<link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/data.css" />
+		<link href="css/iconfont/Rjdaoico.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+		<script type="text/javascript" src="js/slider.js"></script>
+		<!--下拉动画-->
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<script type="text/javascript" src="js/wow.min.js"></script>
+
+		<!--gps-->
+		<link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+		<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9c51fa8876230f9988234fb29ac40173&plugin=AMap.Riding&plugin=AMap.Walking&plugin=AMap.Transfer&plugin=AMap.Driving&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+		<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+
+		<style>
+			html,
+			body,
+			#container {
+				width: 100%;
+				height: 94%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="datamain">
+			<!---头部 开始 --->
+			<div class="data-nav">
+				<div class="bw">
+					<a href="index.html" class="l"><i class="icon-edff"></i></a>
+					<div class="name">公开数据中心</div>
+					<a href="javascript:void(0)" class="r"><i class="icon-ecfa"></i></a>
+				</div>
+			</div>
+			<div class="h-height"></div>
+			<!---头部 结束 --->
+
+		</div>
+		<div id='container'></div>
+		<div style="position: absolute; top: 8%;" id="myPageTop">
+			<table>
+				<tr>
+					<td>
+						<label>请输入关键字：</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input id="tipinput" />
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="panel"></div>
+		<div style="display: none;" class="info">
+			<h4 id='status'></h4>
+			<hr>
+			<p id='result'></p>
+		</div>
+		<div style="margin: 3%;height: 7%;">
+			<button style="width: 19%;height: 100%;border-radius: 50%;" onclick="buxing()">步行</button>
+			<button style="width: 19%;height: 100%;border-radius: 50%;" onclick="tijiao()">骑行</button>
+			<button style="width: 19%;height: 100%;border-radius: 50%; " onclick="gongjiao()">公交</button>
+			<button style="width: 19%;height: 100%;border-radius: 50%;" onclick="jiashi()">驾驶</button>
+			<button style="width: 19%;height: 100%;border-radius: 50%;" onclick="shuaxin()">刷新</button>
+		</div>
+
+		<script type="text/javascript">
+			var map = new AMap.Map("container", {
+				resizeEnable: true,
+				zoom: 13 //地图显示的缩放级别
+			});
+			var m1 = new AMap.Marker({
+				map: map,
+				draggable: true,
+				position: new AMap.LngLat(117.368904, 39.923423)
+			});
+			var m2 = new AMap.Marker({
+				map: map,
+				draggable: true,
+				position: new AMap.LngLat(117.368904, 39.923423)
+			});
+			var transOptions = {
+				map: map,
+				city: '北京市',
+				panel: 'panel',
+				//cityd:'乌鲁木齐',
+				policy: AMap.TransferPolicy.LEAST_TIME
+			};
+			var autoOptions = {
+				input: "tipinput"
+			};
+			var auto = new AMap.Autocomplete(autoOptions);
+			var placeSearch = new AMap.PlaceSearch({
+				map: map
+			}); //构造地点查询类
+			AMap.event.addListener(auto, "select", select); //注册监听，当选中某条记录时会触发
+			function select(e) {
+				placeSearch.setCity(e.poi.adcode);
+				placeSearch.search(e.poi.name); //关键字查询查询
+			}
+			AMap.plugin('AMap.Geolocation', function() {
+				var geolocation = new AMap.Geolocation({
+					enableHighAccuracy: true, //是否使用高精度定位，默认:true
+					timeout: 10000, //超过10秒后停止定位，默认：5s
+					buttonPosition: 'LB', //定位按钮的停靠位置
+					buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+					zoomToAccuracy: true, //定位成功后是否自动调整地图视野到定位点
+
+				});
+				map.addControl(geolocation);
+				geolocation.getCurrentPosition(function(status, result) {
+					if (status == 'complete') {
+						onComplete(result)
+					} else {
+						onError(result)
+					}
+				});
+			});
+			//解析定位结果
+			var position;
+
+			function onComplete(data) {
+				document.getElementById('status').innerHTML = '定位成功'
+				var str = [];
+				str.push('定位结果：' + data.position);
+				position = data.position;
+				m1.setPosition(data.position);
+				m2.setPosition(data.position);
+				m1.position = data.position;
+
+				str.push('定位类别：' + data.location_type);
+				if (data.accuracy) {
+					str.push('精度：' + data.accuracy + ' 米');
+				} //如为IP精确定位结果则没有精度信息
+				str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+				document.getElementById('result').innerHTML = str.join('<br>');
+
+			}
+			//解析定位错误信息
+			function onError(data) {
+				document.getElementById('status').innerHTML = '定位失败'
+				document.getElementById('result').innerHTML = '失败原因排查信息:' + data.message;
+			}
+
+
+
+			map.setFitView();
+
+			var line, text;
+
+			function computeDis() {
+				var p1 = m1.getPosition();
+				var p2 = m2.getPosition();
+
+				var textPos = p1.divideBy(2).add(p2.divideBy(2));
+				var distance = Math.round(p1.distance(p2));
+				var path = [p1, p2];
+				if (!line) {
+					line = new AMap.Polyline({
+						map: map,
+						strokeColor: '#80d8ff',
+						isOutline: true,
+						outlineColor: 'white',
+						path: path
+					});
+				} else {
+					line.setPath(path);
+				}
+				if (!text) {
+					text = new AMap.Text({
+						text: '两点相距' + distance + '米',
+						position: textPos,
+						map: map,
+						style: {
+							'background-color': '#29b6f6',
+							'border-color': '#e1f5fe',
+							'font-size': '12px'
+						}
+					})
+
+				} else {
+					text.setText('两点相距' + distance + '米')
+					text.setPosition(textPos)
+				}
+			}
+			computeDis();
+			m1.on('dragging', computeDis)
+			m2.on('dragging', computeDis)
+
+
+			var ridingOption = {
+				map: map,
+				panel: "panel",
+				policy: 1,
+				hideMarkers: false,
+				isOutline: true,
+				outlineColor: '#ffeeee',
+				autoFitView: true
+			}
+
+
+
+			function tijiao() {
+				var riding = new AMap.Riding(ridingOption)
+				var p1 = m1.getPosition();
+				var p2 = m2.getPosition();
+				//根据起终点坐标规划骑行路线
+				riding.search(p1, p2, function(status, result) {
+					// result即是对应的公交路线数据信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_RidingResult
+					if (status === 'complete') {
+						log.success('骑行路线数据查询成功')
+					} else {
+						log.error('骑行路线数据查询失败' + result)
+					}
+				});
+			}
+
+			function buxing() {
+
+				var walking = new AMap.Walking({
+					map: map,
+					panel: "panel"
+				});
+				var p1 = m1.getPosition();
+				var p2 = m2.getPosition();
+				//根据起终点坐标规划步行路线
+				walking.search(p1, p2, function(status, result) {
+					// result即是对应的步行路线数据信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_WalkingResult
+					if (status === 'complete') {
+						log.success('绘制步行路线完成')
+					} else {
+						log.error('步行路线数据查询失败' + result)
+					}
+				});
+			}
+
+			function gongjiao() {
+				var p1 = m1.getPosition().toString();
+				var p2 = m2.getPosition().toString();
+				var p1_1 = parseFloat((p1.split(","))[0]);
+				var p1_2 = parseFloat((p1.split(","))[1]);
+				var p2_1 = parseFloat((p2.split(","))[0]);
+				var p2_2 = parseFloat((p2.split(","))[1]);
+				var transfer = new AMap.Transfer(transOptions);
+				//根据起、终点坐标查询公交换乘路线
+				transfer.search(new AMap.LngLat(p1_1, p1_2), new AMap.LngLat(p2_1, p2_2), function(status,
+					result) {
+					// result即是对应的公交路线数据信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_TransferResult
+					if (status === 'complete') {
+						log.success('绘制公交路线完成')
+					} else {
+						log.error('公交路线数据查询失败' + result)
+					}
+				});
+			}
+
+			function jiashi() {
+				var p1 = m1.getPosition().toString();
+				var p2 = m2.getPosition().toString();
+				var p1_1 = parseFloat((p1.split(","))[0]);
+				var p1_2 = parseFloat((p1.split(","))[1]);
+				var p2_1 = parseFloat((p2.split(","))[0]);
+				var p2_2 = parseFloat((p2.split(","))[1]);
+				var driving = new AMap.Driving({
+					map: map,
+					panel: "panel"
+				});
+				// 根据起终点经纬度规划驾车导航路线
+				driving.search(new AMap.LngLat(p1_1, p1_2), new AMap.LngLat(p2_1, p2_2), function(status,
+					result) {
+					// result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+					if (status === 'complete') {
+						log.success('绘制驾车路线完成')
+					} else {
+						log.error('获取驾车数据失败：' + result)
+					}
+				});
+			}
+
+			function shuaxin() {
+				location.href = "ditu.html";
+			}
+		</script>
+
+
+	</body>
 </html>
