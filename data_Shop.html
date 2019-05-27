@@ -47,69 +47,7 @@
 </script>
 <!--下拉动画-->
 <script type="text/javascript">
-	$.ajax({
-		url: "http://106.14.208.219:8080/taijios/getshopTTS",
-		type: "post",
-		data: {
-			machineID: 1,
-			str:"帮我在附件找一个网吧" 
-		},
-		dataType: "jsonp",
-		jsonpCallback: "successCallback5", //指定回调函数名称
-		success: function(data) {
-			$("#sname1").text(data.shops[0].sName)
-			$("#sname2").text(data.shops[1].sName)
-			$("#sname3").text(data.shops[2].sName)
-			$("#sname4").text(data.shops[3].sName)
-			$("#sname5").text(data.shops[4].sName)
-			
-			$("#avgf1").text(data.shops[0].avgcomment)
-			$("#avgf2").text(data.shops[1].avgcomment)
-			$("#avgf3").text(data.shops[2].avgcomment)
-			$("#avgf4").text(data.shops[3].avgcomment)
-			$("#avgf5").text(data.shops[4].avgcomment)
-			$("#saddress1").text(data.shops[0].saddress)
-			$("#saddress2").text(data.shops[1].saddress)
-			$("#saddress3").text(data.shops[2].saddress)
-			$("#saddress4").text(data.shops[3].saddress)
-			$("#saddress5").text(data.shops[4].saddress)
-			
-			$("#pcount1").text(data.shops[0].pcount)
-			$("#pcount2").text(data.shops[1].pcount)
-			$("#pcount3").text(data.shops[2].pcount)
-			$("#pcount4").text(data.shops[3].pcount)
-			$("#pcount5").text(data.shops[4].pcount)
-			
-			$("#avgprice1").text(data.shops[0].avgprice)
-			$("#avgprice2").text(data.shops[1].avgprice)
-			$("#avgprice3").text(data.shops[2].avgprice)
-			$("#avgprice4").text(data.shops[3].avgprice)
-			$("#avgprice5").text(data.shops[4].avgprice)
-			
-			$("#simg1").attr("src",data.shops[0].imgurl);
-			$("#simg2").attr("src",data.shops[1].imgurl);
-			$("#simg3").attr("src",data.shops[2].imgurl);
-			$("#simg4").attr("src",data.shops[3].imgurl);
-			$("#simg5").attr("src",data.shops[4].imgurl);
-			
-			
-			$("#latitude1").text(data.shops[1].latitude);
-			$("#longitude1").text(data.shops[1].longitude);
-			
-			$("#latitude2").text(data.shops[2].latitude);
-			$("#longitude2").text(data.shops[2].longitude);
-			
-			$("#latitude3").text(data.shops[3].latitude);
-			$("#longitude3").text(data.shops[3].longitude);
-			
-			$("#latitude4").text(data.shops[4].latitude);
-			$("#longitude4").text(data.shops[4].longitude);
-			
-			$("#latitude5").text(data.shops[5].latitude);
-			$("#longitude5").text(data.shops[5].longitude);
-			
-		}	
-	});
+		
 </script>
 
 </head>
@@ -132,7 +70,7 @@
 <!---头部 结束 ajax >>>>getshopTTS shops.list--->
 
 
-<div class="data-juan-list" style="height: 1800px; width: 100%; top: -100px; position: absolute;">
+<div id="dianlist" class="data-juan-list" style="display: none; height: 1800px; width: 100%; top: -100px; position: absolute;">
     
 	
 	<div id="shoptop" style="width: 100%; height: 150px;" ></div>
@@ -157,7 +95,8 @@
 			<span id="latitude1" style="display: none;" ></span>
 			<span id="longitude1" style="display: none;" ></span>
 			<span  id="saddress1" style="font-size: 14px; color: #DDFFDD; position: relative; left: -100px; top: 15px; "></span>
-			<button id="ditu1" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			
+			<img  id="ditu1" src="css/img/icon/ditu%20(1).png" style="position: relative; top: -50px; left: 240px;" />
     	</div>
     </div>
 	
@@ -180,7 +119,7 @@
 			<span id="latitude2" style="display: none;" ></span>
 			<span id="longitude2" style="display: none;" ></span>
 			<span  id="saddress2" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; "></span>
-			<button id="ditu2" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			<img id="ditu2" src="css/img/icon/ditu%20(1).png" style="position: relative; top: -50px; left: 240px;" />
 		</div>
 	</div>
 	
@@ -203,7 +142,8 @@
 			<span id="latitude3" style="display: none;" ></span>
 			<span id="longitude3" style="display: none;" ></span>
 			<span  id="saddress3" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; "></span>
-			<button id="ditu3" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			<img id="ditu3" src="css/img/icon/ditu%20(1).png" style="position: relative; top: -50px; left: 240px;" />
+			
 		</div>
 	</div>
 	
@@ -226,7 +166,8 @@
 			<span id="latitude4" style="display: none;" ></span>
 			<span id="longitude4" style="display: none;" ></span>
 			<span  id="saddress4" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; "></span>
-			<button id="ditu4" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			
+			<img id="ditu4" src="css/img/icon/ditu%20(1).png" style="position: relative; top: -36px; left: 240px;" />
 		</div>
 	</div>
 	
@@ -249,7 +190,7 @@
 			<span id="latitude5" style="display: none;" ></span>
 			<span id="longitude5" style="display: none;" ></span>
 			<span  id="saddress5" style="font-size: 14px; color: #DDFFDD; position: relative; left: -60px; top: 15px; ">建邺区奥体大街177号环宇融侨广场二层210号（奥体中心南门）</span>
-			<button id="ditu5" type="button" style="position: relative; top: -40px; left: 220px;">查看地图</button>
+			<img id="ditu5" src="css/img/icon/ditu%20(1).png" style="position: relative; top: -50px; left: 240px;" />
 		</div>
 	</div>
 	
