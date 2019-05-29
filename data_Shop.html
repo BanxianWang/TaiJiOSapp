@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>附件商家查询</title>
+<title>智能语音</title>
 <meta name="keywords" content="有爱的" />
 <meta name="description" content="有爱的" />
 <link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon"/>
@@ -19,7 +19,7 @@
 
 
 <script src="js/yuyinJS/speechInput .js"></script>
-
+<script src="js/yuyinJS/speechInput.js"></script>
 <!--下拉动画-->
 <link rel="stylesheet" href="css/animate.min.css"/>
 <script type="text/javascript" src="js/wow.min.js"></script>
@@ -60,7 +60,7 @@
 	<div class="data-nav">
     	<div class="bw">
         	<a href="javascript:history.go(-1)" class="l"><i class="icon-eee3"></i></a>
-            	<div class="name">附近商家查询</div>
+            	<div class="name">智能语音</div>
         	<a href="JavaScript:void(0)"  onclick="startRecognize()" class="r"><i class="icon-ecfa"></i></a>
         </div>
     </div>
@@ -204,7 +204,18 @@
 	<div style="display: none;" id="outpos"></div>
 	<div style="display: none;" id="output"></div>
 </div>
+	<div>
+			<button style="height: 50px; width: 100%;display: block;position: fixed;bottom: 0px;" class="button" onclick="startRecognize()">开始语音识别</button>
 
+			<br />
+			<!-- <textarea readonly="readonly" id="text" onchange="showInfo(this)" style="margin:2%;padding:2%;height:60px;width:90%;border:1px solid #6C6C6C;-webkit-border-radius: 2px;border-radius: 2px;-webkit-appearance:none;">
+			语音输入内容
+			-->
+			<div style="display: none;" id="outpos" />
+			<div style="display: none;" id="output">
+			</div>
+		</div>
+		</div>
 
 
 </div>

@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>平台总额度</title>
+		<title>温湿度监测</title>
 		<meta name="keywords" content="有爱的" />
 		<meta name="description" content="有爱的" />
 		<link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon" />
@@ -88,6 +88,9 @@
 			#yubao {
 				color: gray;
 			}
+			.highcharts-subtitle tspan{
+				display: none;
+			}
 		</style>
 
 
@@ -146,18 +149,7 @@
 		</div>
 		<!-- <div style="width: 2%; height: 50px; background-color: red;position: fixed;bottom: 5%;"></div> -->
 
-		<div>
-			<button style="height: 50px; width: 100%;display: block;position: fixed;bottom: 0px;" class="button" onclick="startRecognize()">开始语音识别</button>
-
-			<br />
-			<!-- <textarea readonly="readonly" id="text" onchange="showInfo(this)" style="margin:2%;padding:2%;height:60px;width:90%;border:1px solid #6C6C6C;-webkit-border-radius: 2px;border-radius: 2px;-webkit-appearance:none;">
-			语音输入内容
-			-->
-			<div style="display: none;" id="outpos" />
-			<div style="display: none;" id="output">
-			</div>
-		</div>
-		</div>
+	
 	</body>
 
 </html>

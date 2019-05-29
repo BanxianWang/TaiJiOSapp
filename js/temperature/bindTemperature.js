@@ -61,6 +61,10 @@
 					jsonpCallback: "successCallback2", //指定回调函数名称
 					success: function(data) {
 						var dataModels = ['1', '2', '3', '4', '5', '6', '7'];
+						var wendus = data.daysavg;
+						for (var i =0;i<wendus.length;i++) {
+							wendus[i]=parseFloat(wendus[i]);
+						}
 						bindContainer($("#container1"),data.daysavg,dataModels);
 					}
 				});
